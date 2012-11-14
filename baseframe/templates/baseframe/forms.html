@@ -102,8 +102,8 @@
   {% endfor %}
 {%- endmacro %}
 
-{% macro renderform(form, formid, submit, message='', action='', cancel_url='', multipart=False) %}
-<form id="{{ formid }}" method="POST" {%- if action %} action="{{ action }}" {%- endif %}{%- if multipart %} enctype="multipart/form-data" {%- endif %} accept-charset="UTF-8" class="form-horizontal">
+{% macro renderform(form, formid, submit, message='', action='', cancel_url='', multipart=False, novalidate=False) %}
+<form id="{{ formid }}" method="POST" {%- if action %} action="{{ action }}" {%- endif %}{%- if multipart %} enctype="multipart/form-data" {%- endif %} accept-charset="UTF-8" class="form-horizontal" {%- if novalidate %} novalidate {% endif %}>
   {{ renderform_inner(form, formid) }}
   {{ rendersubmit([(None, submit or "Submit", 'btn-primary')], cancel_url=cancel_url) }}
 </form>
